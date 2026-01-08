@@ -1,12 +1,14 @@
 import { createContext, useState, useEffect } from "react";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL;
-console.log("API_URL =", API_URL);
+
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+    const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(localStorage.getItem('token') || null);
     const [loading, setLoading] = useState(true);
@@ -73,6 +75,7 @@ export const AuthProvider = ({ children }) => {
         setToken(null);
         setUser(null);
         delete axios.defaults.headers.common['Authorization'];
+        navigate('/login')
     };
 
     return (
