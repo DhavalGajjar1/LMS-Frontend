@@ -5,19 +5,21 @@ import './App.css'
 import { BrowserRouter } from 'react-router-dom'
 import AppRoutes from './pages/routes/AppRoutes'
 import { AuthProvider } from './context/AuthContext'
+import { CourseProvider } from './context/CourseContext'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <BrowserRouter>
-        <AuthProvider>
-          <AppRoutes></AppRoutes>
-        </AuthProvider>
-          
-      </BrowserRouter>
-    </>
+
+    <BrowserRouter>
+      <AuthProvider>
+        <CourseProvider>
+          <AppRoutes />
+        </CourseProvider>
+      </AuthProvider>
+
+    </BrowserRouter>
+
   )
 }
 
